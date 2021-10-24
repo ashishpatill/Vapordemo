@@ -67,6 +67,45 @@ Once the command finishes, change into the newly created folder:
 ```
 cd projectName
 ```
+# Folder Structure
+
+Vapor follows SPM (Swift package manager's) folder structure. So it might feel lot familiar to you. 
+
+![Vapor Folder structure](https://imgur.com/WqN2wUW)
+
+This is how your folder structure looks like. Some of the important folders and files are explained below:
+
+### Public folder 
+
+All public accessible files like any public browser scripts, public images etc are kept in this folder. You will need to enable fileMiddleware if you want one in configure file.
+
+```swift
+// Serves files from `Public/` directory
+let fileMiddleware = FileMiddleware(
+    publicDirectory: app.directory.publicDirectory
+)
+app.middleware.use(fileMiddleware)
+
+```
+### Sources folder
+As the name says it contains all the source code for project.
+
+App folder:
+This is where you should put all your logic and non public code.
+
+### Controller folder
+
+This folder contains all the controllers for your vapor project. You can create a controller to represent a bunch of Apis as per their functionality. e.g. A Login controller might have a login and register api. It may also manage connections and operrations with database for those apis. By default vapor project follows the MVC (Model view controller design pattern)
+
+### Configure file
+
+This file contains the configuration details of project like routes, databases, providers, etc. It contains a `configure(_:)` function which is called by `main.swift`.
+
+### routes.swift file
+
+This file contains the `routes(_:)` function. This file contains the logic for Api. The routes function handles the redirection, processing the request and returning the response for the route. You can register sub-routes for a route. The Routes function is called from `configure(_:)` function.
+
+You can check details about other folder details [here](https://docs.vapor.codes/4.0/folder-structure/).
 
 ## Build & Run
 
@@ -107,3 +146,4 @@ It works!
 ```
 
 This means our local server is up and running. We can now build an api on our local server.
+
