@@ -106,4 +106,4 @@ You may see the message in browser saying
 It works!
 ```
 
-This means our local server is up and running. We can now build our own api.
+This means our local server is up and running. We can now build an api on our local server.
