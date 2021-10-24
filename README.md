@@ -48,3 +48,62 @@ xcode - Opens an app in Xcode.
 
 Use `vapor <command> [--help,-h]` for more information on a command.
 ```
+Now that you have vapor installed lets create a vapor project. Open Terminal and navigate to the project folder where you want to create your new project. 
+
+```
+cd <Path to your project directory> 
+```
+
+Create a new project
+
+```
+vapor new projectName -n
+```
+
+> The `-n` flag gives you a bare bones template by automatically answering no to all questions.
+
+Once the command finishes, change into the newly created folder:
+
+```
+cd projectName
+```
+
+## Build & Run
+
+### Xcode
+
+First, open the project in Xcode:
+
+```
+open Package.swift
+```
+
+you can either use 
+
+```
+vapor xcode
+```
+
+It will automatically start downloading the package dependencies like ![Vapor Package Dependencies](https://imgur.com/GVYq3Wi)
+
+You can run your project now with xcode. or you can run it from terminal with 
+
+```
+swift run
+```
+
+The first time you run this it will take some time to fetch and resolve the dependencies. Once running you should see the following in your console:
+
+```
+[ INFO ] Server starting on http://127.0.0.1:8080
+```
+
+you can now go to your browser and open [http://127.0.0.1:8080](http://127.0.0.1:8080) or http://localhost:8080
+
+You may see the message in browser saying
+
+```
+It works!
+```
+
+This means our local server is up and running. We can now build our own api.
