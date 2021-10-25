@@ -200,3 +200,6 @@ You can add parameters to your request URL.
 e.g. https://www.youtube.com/channel/FGHJTTJgadhdfKAHF4msZN 
 Here after your `channel/` you can find the parameter `FGHJTTJgadhdfKAHF4msZN`. You can accept the parameter value, use it to provide the response. 
 
+### Request Body
+
+In Request body you will pass data in the form of an json encoded object.
