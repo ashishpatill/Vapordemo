@@ -154,7 +154,7 @@ It works!
 
 This means our local server is up and running. We can now build an api on our local server.
 
-# Creating an Api in swift with Vapor
+## Creating an Api
 
 ### Routing
 
