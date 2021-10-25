@@ -1,8 +1,10 @@
-### Introduction
+# How to use vapor to create your own api with Swift
+
+## Introduction
 
 You have consumed few Apis till now and understand how to get and parse the response from the server. In this session we are going to learn about HTTP requests, how to create your own REST api with a local server setup. Yes we are going to create a local server on your Mac, sounds interesting ? Well lets make it more fun, you can setup the server right from your xcode with Swift. No need to learn any other language like Javascript or Python and no need to use another IDE. We are going to use Vapor which is a HTTP web framework written in Swift.  It makes writing your server side code from xcode easy and expressive. Vapor has Non-blocking, event-driven architecture built on top of Apple's [SwiftNIO](https://github.com/apple/swift-nio). The Vapor project includes over a hundred [official](https://github.com/vapor) and [community](https://github.com/vapor-community) maintained server-first Swift packages. Well if you are already pumped for getting started with vapor, lets go straight to installation...
 
-### Installation
+## Installation
 
 To use vapor on macOS, you need swift version 5.2 or greater which comes bundled with xcode you already installed. (Make sure you check the latest requirements from vapor documentation [here](https://docs.vapor.codes/4.0/install/macos/ before setup)). You can check the version of swift with :-
 
@@ -48,6 +50,8 @@ xcode - Opens an app in Xcode.
 
 Use `vapor <command> [--help,-h]` for more information on a command.
 ```
+## Setup Vapor project
+
 Now that you have vapor installed lets create a vapor project. Open Terminal and navigate to the project folder where you want to create your new project. 
 
 ```
@@ -67,11 +71,11 @@ Once the command finishes, change into the newly created folder:
 ```
 cd projectName
 ```
-# Folder Structure
+## Folder Structure
 
 Vapor follows SPM (Swift package manager's) folder structure. So it might feel lot familiar to you. 
 
-![Vapor Folder structure](https://imgur.com/WqN2wUW)
+![Vapor Folder structure](https://i.imgur.com/WqN2wUW.png)
 
 This is how your folder structure looks like. Some of the important folders and files are explained below:
 
@@ -123,7 +127,7 @@ you can either use
 vapor xcode
 ```
 
-It will automatically start downloading the package dependencies like ![Vapor Package Dependencies](https://imgur.com/GVYq3Wi)
+It will automatically start downloading the package dependencies like ![Vapor Package Dependencies](https://i.imgur.com/GVYq3Wi.png)
 
 You can run your project now with xcode. or you can run it from terminal with 
 
