@@ -128,7 +128,9 @@ you can either use
 vapor xcode
 ```
 
-It will automatically start downloading the package dependencies like ![Vapor Package Dependencies](https://i.imgur.com/GVYq3Wi.png)
+It will automatically start downloading the package dependencies as follows: -
+
+![Vapor Package Dependencies](https://i.imgur.com/GVYq3Wi.png)
 
 You can run your project now with xcode. or you can run it from terminal with 
 
@@ -151,4 +153,50 @@ It works!
 ```
 
 This means our local server is up and running. We can now build an api on our local server.
+
+# Creating an Api in swift with Vapor
+
+### Routing
+
+What do mean by Routing is that we receive the information in the form a request, process that information and return a response. This process may involve finding the correct request handler for the request, getting the information from parameters or request body or fetching some info from the database, process the info and return a response in desired format (usually JSON).
+
+Lets look at a sample request:-
+
+~~~
+GET /hello/vapor HTTP/1.1
+host: vapor.codes
+content-length: 0
+~~~
+
+This is a simple HTTP request of type `GET`. 
+
+## Basics of HTTP Request
+
+An HTTP request mainly consists of:
+
+- HOST and Request path
+- HTTP Methods
+- Parameters, query string
+- Request Body
+
+### HOST and Request path
+A request host is the first part of URL, usually the domain. e.g.  `https://www.youtube.com/channel/FGHJTTJgadhdfKAHF4msZN`. Here www.youtube.com is the domain or host path of your Request. After `/` is the request path. `channel` is the route which accepts an encrypted string holding information about the channel.
+
+### HTTP Methods
+
+HTTP methods help distinguish the type of request we want to make. It can be classified like CRUD operations.
+
+There are 5 main types of an HTTP request methods as follows:
+
+![HTTP methods](https://i.imgur.com/UMvXCRm.png)
+
+As mentioned above, `GET` performs the read operation on your server database and returns the desired result. `POST` creates an object and saves in your server database. So your method type determines what kind of operation you want to perform.
+
+You can check details of an HTTP request [here](https://www.tutorialspoint.com/http/http_requests.htm).
+
+### Parameters
+
+You can add parameters to your request URL. 
+e.g. https://www.youtube.com/channel/FGHJTTJgadhdfKAHF4msZN 
+Here after your `channel/` you can find the parameter `FGHJTTJgadhdfKAHF4msZN`. You can accept the parameter value, use it to provide the response. 
 
