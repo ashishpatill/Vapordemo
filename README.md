@@ -77,6 +77,7 @@ Vapor follows SPM (Swift package manager's) folder structure. So it might feel l
 
 ![Vapor Folder structure](https://i.imgur.com/WqN2wUW.png)
 
+
 This is how your folder structure looks like. Some of the important folders and files are explained below:
 
 ### Public folder 
