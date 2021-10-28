@@ -203,3 +203,74 @@ Here after your `channel/` you can find the parameter `FGHJTTJgadhdfKAHF4msZN`. 
 ### Request Body
 
 In Request body you will pass data in the form of an json encoded object.
+
+## Creating a Request with Vapor
+Lets look at the routing.swift file. You can see following get request:
+
+~~~swift
+app.get { req in
+   return "It works!"
+}
+~~~
+
+This method is not accepting any parameters yet and returning a string response. Try changing the string, run your project again and reload your browser. You will see updated text in your browser.
+
+Lets create another route called movies: 
+
+~~~swift 
+app.get("movies") { req -> String in
+    return "This will return a list of movies"
+}
+~~~
+
+ The get() method accepts string as parameters. The first string parameter here is name of the route. The get() method returns a completion handler along with a request object as parameter. You can specify the return type of your response like: 
+ 
+~~~swift
+-> String
+~~~
+
+If you want to return a custom json object as response you have to return type as the object. e.g.
+
+Following Json object contains an array of movie objects:
+
+~~~swift
+{
+	"status" : 200
+	"movies" : [
+		{
+			"title": "movie 1",
+			"id": 2,
+			"director": "ABC"
+		},			
+		{
+			"title": "movie 2",
+			"id": 263,
+			"director": "PQR"
+		},
+		{
+			"title": "movie 3",
+			"id": 349,
+			"director": "XYZ"
+		}
+	]
+}
+~~~
+
+To return this json object as the response you will need to create a struct representing the movie api response as follows:
+
+~~~swift
+struct MovieResponse: Content {
+	let status: String
+	let movies: [Movie] 
+}
+
+struct Movie: Content {
+	let title: String 
+	let id: Int
+	let director: String 
+}  
+~~~ 
+
+Now our `app.get()` method can return `MovieResponse` object instead of a struct. Notice that MovieResponse confirms to the `Content` protocol. Content protocol helps encode the api response json to MovieResponse object. It uses the codable protocol to do this.
+
+
