@@ -205,6 +205,8 @@ Here after your `channel/` you can find the parameter `FGHJTTJgadhdfKAHF4msZN`. 
 In Request body you will pass data in the form of an json encoded object.
 
 ## Creating a Request with Vapor
+
+### Default Route
 Lets look at the routing.swift file. You can see following get request:
 
 ~~~swift
@@ -214,6 +216,8 @@ app.get { req in
 ~~~
 
 This method is not accepting any parameters yet and returning a string response. Try changing the string, run your project again and reload your browser. You will see updated text in your browser.
+
+### Creating a new Route without a parameter
 
 Lets create another route called movies: 
 
@@ -229,7 +233,27 @@ app.get("movies") { req -> String in
 -> String
 ~~~
 
-If you want to return a custom json object as response you have to return type as the object. e.g.
+Now try opening this url in browser : http://localhost:8080/movies. You will see response string `Movies` in your browser.
+
+### Route with a parameter
+
+Instead of creating a new route for each response, we can accept the route as a parameter and process it to return a response as needed by the parameter.
+
+~~~swift
+app.get("movies", ":genre") { req -> String in
+    guard let genre = req.parameters.get("genre") else { return "Invalid Genre" }
+    if genre == "comedy" {
+        return "Hangover, Home alone"
+    } else {
+        return "please specify the correct genre"
+    }
+    return "Genre is \(genre)"
+}
+~~~ 
+
+Here we accept `genre` as the parameter for the genre of movies. If value for the parameter is "**comedy**" we will return a string with some movie names otherwise just ask user to add the valid `genre`. So you can see how you can use the parameters.
+
+You can return a custom json object as response you have to return type. 
 
 Following Json object contains an array of movie objects:
 
@@ -271,6 +295,65 @@ struct Movie: Content {
 }  
 ~~~ 
 
-Now our `app.get()` method can return `MovieResponse` object instead of a struct. Notice that MovieResponse confirms to the `Content` protocol. Content protocol helps encode the api response json to MovieResponse object. It uses the codable protocol to do this.
+Now our `app.get()` method can return `MovieResponse` object instead of a string. Notice that MovieResponse confirms to the `Content` protocol. Content protocol helps encode the api response json to MovieResponse object. It uses the codable protocol to do this. 
 
+~~~swift
+app.get("movies") { req -> MoviesResponse in
+	let movieArr = ["Movie 1", "Movie 2", "Movie 3", "Movie 4", "Movie 5"]	
+	let movieObject = MoviesResponse(status: 201, movies: movieArr)
+   	return movieObject
+}
+~~~
 
+Now our /movies endpoint returns the movie object which contains array of movies. 
+
+### Handle POST request
+POST request as discussed earlier has a body which can accept an object as input. So we will create a struct for MovieRequest.
+
+~~~swift
+struct MoviesRequest : Content {
+    let category : String
+}
+~~~ 
+
+Now create a movie request object in your app or you can use a client like postman to pass the request object with category. 
+
+~~~swift 
+let request = MoviesRequest(category: "action")
+~~~
+
+Now when you send a post request, you will receive this request object. So we will now add code to get the incoming request. Process it and then return the MovieResponse object.
+
+~~~swift
+app.post("movies") { req -> MoviesResponse in
+    let movieRequest = try req.content.decode(MoviesRequest.self)
+    
+    if movieRequest.category == "action" || movieRequest.category == "comedy" {
+    	return getMoviesObject(category: movieRequest.category)
+    } else {
+    	// error response
+    	return MoviesResponse(status: 400, movies: [])
+    }
+}
+
+// Returns a movie response object which contains array of movies
+func getMoviesObject(category:String) -> MoviesResponse {
+    // movies arr in database
+    let actionMovies = ["The Dark Knight ", "The Lord of the Rings: The Return of the King", "Inception", "The Lord of the Rings: The Fellowship of the Ring", "The Mountain II", "300"]
+
+    let comedyMovies = ["The Chaos Class", "Parasite", "Life Is Beautiful", "The Intouchables", "Back to the Future"]
+
+    // fetch operation from database
+    var movies = actionMovies
+    if category == "comedy" {
+        movies = comedyMovies
+    } else {
+        movies = actionMovies
+    }
+
+    let movieObject = MoviesResponse(status: 201, movies: movies)
+    return movieObject
+}
+~~~
+
+Thats it you have now created a POST Api in your Xcode with swift. Cant be more convinient than that. So play along and try to create some custom request.
