@@ -322,7 +322,7 @@ Now create a movie request object in your app or you can use a client like postm
 let request = MoviesRequest(category: "action")
 ~~~
 
-Now when you send a post request, you will receive this request object. So we will now add code to get the incoming request. Process it and then return the MovieResponse object.
+Now when you send a post request from client (app/browser), you will receive this request object on your server. So we will now add code to get the incoming request. Process it and then return the MovieResponse object.
 
 ~~~swift
 app.post("movies") { req -> MoviesResponse in
