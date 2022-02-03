@@ -6,7 +6,7 @@ You have consumed few Apis till now and understand how to get and parse the resp
 
 ## Installation
 
-To use vapor on macOS, you need swift version 5.2 or greater which comes bundled with xcode you already installed. (Make sure you check the latest requirements from vapor documentation [here](https://docs.vapor.codes/4.0/install/macos/ before setup)). You can check the version of swift with :-
+To use vapor on macOS, you need swift version 5.2 or greater which comes bundled with xcode you already installed. (Make sure you check the latest requirements from vapor documentation [here](https://docs.vapor.codes/4.0/install/macos) before setup. You can check the version of swift with :-
 
 ```
 swift --version
